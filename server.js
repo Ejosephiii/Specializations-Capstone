@@ -4,6 +4,7 @@ const cors = require("cors");
 const path = require("path");
 const port = process.env.port || 3001;
 const app = express();
+const bcrypt = require("bcryptjs");
 
 app.use(express.json());
 app.use(cors());
@@ -24,6 +25,7 @@ const db = new Sequelize("InstaClone_Database", "postgres", "Behappy12", {
   },
 });
 
+//get requests
 app.get("/api/users", (req, res) => {
   db.query(`SELECT * FROM users;`)
     .then((dbRes) => {
@@ -43,6 +45,44 @@ app.get("/api/posts", (req, res) => {
 
 //? 2. create an endpoint that will receive the request and create the post
 
+app.post("/api/users", async (req, res) => {
+  const { username, password } = req.body;
+
+  const [[user]] = await db.query(`
+            SELECT * FROM users
+            WHERE username = '${username}';
+        `);
+
+  if (user) {
+    console.log("it's a login");
+    const authenticated = bcrypt.compareSync(password, user.password);
+
+    if (authenticated) {
+      res.status(200).send({
+        username: user.username,
+        userId: user_id,
+      });
+    } else {
+      res.status(401).send("wrong password");
+    }
+  } else if (!user) {
+    console.log("it's a register");
+
+    const salt = bcrypt.genSaltSync(5);
+    const passHash = bcrypt.hashSync(password, salt);
+    console.log(salt, passHash);
+
+    const [[newUser]] = await db.query(`
+                INSERT INTO users ( username, password ) 
+                VALUES ( '${username}', '${passHash}' )
+                RETURNING user_id, username;
+            `);
+
+    console.log(newUser);
+    res.status(200).send(newUser);
+  }
+});
+//post request
 app.post("/api/posts", (req, res) => {
   let { image, caption } = req.body;
   req.body.caption;
@@ -56,6 +96,7 @@ app.post("/api/posts", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+//put request
 app.put("/api/posts", (req, res) => {
   let { caption, id } = req.body.data;
 
@@ -72,6 +113,7 @@ app.put("/api/posts", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+//delete request
 app.delete("/api/posts", (req, res) => {
   let { id } = req.body;
 
