@@ -1,0 +1,32 @@
+.post-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #17000013;
+}
+
+html {
+  background-color: #17000013;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 30px;
+  /* border-bottom: 2px solid black; */
+  background-color: #17000013;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.post-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #17000013;
+}

@@ -1,0 +1,51 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  position: relative;
+  top: 40vh;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7);
+  width: 40vw;
+  position: relative;
+  left: 30vw;
+}
+
+.submit-div {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+}
+
+.submit {
+  padding: 5px;
+}
+
+.login {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.register input {
+  border-radius: 20px;
+}
+
+.username {
+  margin-right: 10px;
+}
+
+.password {
+  margin-left: 10px;
+}
+
+.header {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.register-div {
+  background-color: #17000013;
+}
