@@ -57,7 +57,7 @@ nav {
   box-sizing: border-box;
   border: 32px solid #df0e0e;
   border-color: rgb(224, 235, 12) transparent rgb(21, 190, 2) transparent;
-  animation: hourglass 1.2s infinite;
+  animation: hourglass 1.3s infinite;
 }
 @keyframes hourglass {
   0% {
