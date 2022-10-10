@@ -4,9 +4,9 @@ import "./Post.css";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import { AiTwotoneDelete } from "react-icons/ai";
 
 const Post = (props) => {
-  console.log(props);
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("");
   const [posts, setPosts] = useState([]);
@@ -35,7 +35,7 @@ const Post = (props) => {
       .then(() => props.data())
       .catch((err) => console.log(err));
   };
-  console.log(props.post.image);
+
   return (
     <div className="post-container">
       <div className="post-inner">
@@ -44,7 +44,7 @@ const Post = (props) => {
         </div>
 
         <div className="post-div-line"></div>
-        <div className="">
+        <div>
           <BiDotsVerticalRounded
             onClick={() => setToggle(!toggle)}
             className="edit-toggle"
@@ -57,19 +57,26 @@ const Post = (props) => {
         </p>
         {toggle ? null : (
           <div>
-            <form onSubmit={editPost}>
+            <form className="submit-form" onSubmit={editPost}>
               <input
                 className="input-delete"
                 onChange={(e) => setCaption(e.target.value)}
                 placeholder="What's your new caption?"
               ></input>
-              <button variant="outline-primary" size="sm">
+              <button
+                className="newPostSubmit"
+                variant="outline-primary"
+                size="sm"
+              >
                 Edit
               </button>
             </form>
-            <button variant="outline-primary" size="sm" onClick={deletePost}>
-              Delete Post
-            </button>
+            <AiTwotoneDelete
+              className="icon-delete"
+              variant="outline-primary"
+              size="30px"
+              onClick={deletePost}
+            ></AiTwotoneDelete>
           </div>
         )}
       </div>

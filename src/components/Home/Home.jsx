@@ -7,23 +7,30 @@ import "./Home.css";
 
 function Home() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const getData = () => {
-    axios.get("http://localhost:3001/api/posts").then((res) => {
+    return axios.get("http://localhost:3001/api/posts").then((res) => {
       console.log(res.data);
       setPosts(res.data);
     });
   };
+
   useEffect(() => {
-    getData();
+    getData().then(() => setLoading(false));
   }, []);
 
   return (
     <div className="app-container">
       <InstaNav />
       <NewPost />
-      <div className="post-div">
-        <Posts data={getData} posts={posts} />
-      </div>
+      {loading ? (
+        <div className="hourglass"></div>
+      ) : (
+        <div className="post-div">
+          <Posts data={getData} posts={posts} />
+        </div>
+      )}
     </div>
   );
 }

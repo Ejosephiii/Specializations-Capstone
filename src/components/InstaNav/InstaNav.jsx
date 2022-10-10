@@ -4,7 +4,7 @@ import "./InstaNav.css";
 const InstaNav = () => {
   return (
     <header className="header">
-      <p className="nav-header">InstaClone</p>
+      <h1 className="nav-header">InstaClone</h1>
       <nav></nav>
     </header>
   );

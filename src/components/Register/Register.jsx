@@ -15,8 +15,9 @@ function Register() {
     e.preventDefault();
     console.log("endpoint hit");
     axios
-      .post("http://localhost:3001/api/users", { username, password })
-      .then(() => navigate("/home"));
+      .post("http://localhost:3001/api/users", { username, password, login })
+      .then(() => navigate("/home"))
+      .catch((err) => alert(err.response.data));
   };
   return (
     <div className="register-div">

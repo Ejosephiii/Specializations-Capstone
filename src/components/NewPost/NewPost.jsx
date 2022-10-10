@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./NewPost.css";
 
@@ -42,7 +41,9 @@ const NewPost = (props) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button variant="outline-primary">Submit</button>
+        <button className="newPostSubmit" variant="outline-primary">
+          Submit
+        </button>
       </form>
     </div>
   );

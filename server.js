@@ -46,7 +46,7 @@ app.get("/api/posts", (req, res) => {
 //? 2. create an endpoint that will receive the request and create the post
 
 app.post("/api/users", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, login } = req.body;
 
   const [[user]] = await db.query(`
             SELECT * FROM users
@@ -65,7 +65,7 @@ app.post("/api/users", async (req, res) => {
     } else {
       res.status(401).send("wrong password");
     }
-  } else if (!user) {
+  } else if ((!user, !login)) {
     console.log("it's a register");
 
     const salt = bcrypt.genSaltSync(5);
@@ -80,6 +80,8 @@ app.post("/api/users", async (req, res) => {
 
     console.log(newUser);
     res.status(200).send(newUser);
+  } else {
+    res.status(401).send("User does not exist");
   }
 });
 //post request

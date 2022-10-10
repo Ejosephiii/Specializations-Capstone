@@ -36,10 +36,12 @@
 
 .username {
   margin-right: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7);
 }
 
 .password {
   margin-left: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7);
 }
 
 .header {
@@ -47,5 +49,5 @@
 }
 
 .register-div {
-  background-color: #17000013;
+  background-color: #f1f1f1;
 }
